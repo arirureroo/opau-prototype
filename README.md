@@ -1,4 +1,4 @@
-# <img src="src/assets/opau-96.png" alt="oPau Logo" width="32" style="vertical-align: middle"> oPau
+# <img src="src/assets/opau-white-96.png" alt="oPau Logo" width="32" style="vertical-align: middle"> oPau
 
 > **⚠️ heads up: this is still a prototype! expect bugs, missing features, and random jank.**
 
@@ -79,6 +79,6 @@ src/
 - metrics are based on actual Pauli test scoring standards (check `PAULI_SCORING.md` if you're curious)
 - still a prototype so some things might be janky
 
-## ide setup
+## license
 
-VSCode + Volar extension. disable Vetur if you have it installed
+MIT License - see [LICENSE](LICENSE) file for details
