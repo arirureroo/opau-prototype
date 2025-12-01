@@ -3,7 +3,6 @@ import type { TestResult } from '@/types/test.types'
 import { interpretAccuracy, getAccuracyExplanation } from '@/domain/pauli/interpretations/PauliInterpreter'
 import { accuracyThresholdDisplays } from '@/presentation/pauli/thresholds/accuracyThresholds'
 import { getBadgeVariant } from '@/presentation/shared/badge/badgeVariants'
-import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import MetricCard from '@/components/MetricCard.vue'
 import ThresholdLegend from '@/components/ThresholdLegend.vue'
@@ -49,17 +48,6 @@ const errorRate = props.results.totalAnswered > 0
         </p>
       </div>
 
-      <div :class="['rounded-lg bg-rose-500/5 border-rose-500/20 p-4 border']">
-        <div :class="['flex items-center gap-2 mb-2 text-rose-600 dark:text-rose-400']">
-          <XCircle :size="16" />
-          <span class="text-xs font-medium uppercase tracking-wide">Wrong</span>
-        </div>
-        <p class="text-2xl font-bold tabular-nums">{{ results.totalWrong }}</p>
-        <p :class="['text-xs mt-1 text-muted-foreground']">
-          {{ errorRate.toFixed(1) }}% error rate
-        </p>
-      </div>
-
       <div :class="['rounded-lg bg-amber-500/5 border-amber-500/20 p-4 border']">
         <div :class="['flex items-center gap-2 mb-2 text-amber-600 dark:text-amber-400']">
           <RefreshCw :size="16" />
@@ -68,6 +56,17 @@ const errorRate = props.results.totalAnswered > 0
         <p class="text-2xl font-bold tabular-nums">{{ results.totalChanged }}</p>
         <p :class="['text-xs mt-1 text-muted-foreground']">
           {{ ((results.totalChanged / results.totalAnswered) * 100).toFixed(1) }}%
+        </p>
+      </div>
+
+      <div :class="['rounded-lg bg-rose-500/5 border-rose-500/20 p-4 border']">
+        <div :class="['flex items-center gap-2 mb-2 text-rose-600 dark:text-rose-400']">
+          <XCircle :size="16" />
+          <span class="text-xs font-medium uppercase tracking-wide">Wrong</span>
+        </div>
+        <p class="text-2xl font-bold tabular-nums">{{ results.totalWrong }}</p>
+        <p :class="['text-xs mt-1 text-muted-foreground']">
+          {{ errorRate.toFixed(1) }}% error rate
         </p>
       </div>
     </div>

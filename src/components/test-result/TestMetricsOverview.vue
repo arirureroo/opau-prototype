@@ -65,7 +65,7 @@ const speedLevel = props.results.apm ? interpretSpeed(props.results.apm) : 'Poor
         <span class="text-xl font-semibold tabular-nums text-rose-600 dark:text-rose-400">{{ results.totalWrong }}</span>
       </div>
       <p class="text-xs text-muted-foreground mt-1">
-        Correct / Wrong / Changed
+        Correct / Changed / Wrong
       </p>
     </div>
 
