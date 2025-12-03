@@ -117,7 +117,7 @@ onBeforeUnmount(() => {
 </script>
 <template>
   <div class="flex flex-col justify-center">
-    <div class="hidden w-fit h-fit md:grid grid-flow-col gap-x-8" :style="gridStyle">
+    <div class="grid w-fit h-fit grid-flow-col gap-x-8" :style="gridStyle">
       <div
         v-for="(number, cellIndex) in testData"
         :key="cellIndex"
@@ -141,10 +141,6 @@ onBeforeUnmount(() => {
           @keydown.arrow-right="navigation.moveRight(cellIndex)"
         />
       </div>
-    </div>
-
-    <div class="block md:hidden text-lg font-semibold text-muted-foreground">
-      Only available in desktop view.
     </div>
   </div>
 </template>

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import { Mode } from '@/types/test.types'
+import { useMobileRestriction } from '@/composables/useMobileRestriction'
 
 const APP_NAME = 'oPau'
 
@@ -48,9 +49,22 @@ const router = createRouter({
   ],
 })
 
-router.beforeEach((to) => {
+router.beforeEach((to, from, next) => {
+  const { isMobile, openDialog } = useMobileRestriction()
+
+  if (isMobile.value && to.name !== 'home') {
+    openDialog()
+    if (from.name) {
+      next(false)
+    } else {
+      next({ name: 'home' })
+    }
+    return
+  }
+
   const isPracticeMode = to.query.mode === Mode.PRACTICE
   document.title = isPracticeMode ? createTitle("Let's practice") : (to.meta.title as string)
+  next()
 })
 
 export default router

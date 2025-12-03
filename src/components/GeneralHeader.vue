@@ -11,8 +11,25 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
 import { ColorModeVariant } from '@/types/ui.types'
+import { useMobileRestriction } from '@/composables/useMobileRestriction'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const mode = useColorMode()
+const isDrawerOpen = ref(false)
+
+const { onNavigationBlocked } = useMobileRestriction()
+
+let cleanup: (() => void) | undefined
+
+onMounted(() => {
+  cleanup = onNavigationBlocked(() => {
+    isDrawerOpen.value = false
+  })
+})
+
+onUnmounted(() => {
+  cleanup?.()
+})
 </script>
 <template>
   <header
@@ -44,7 +61,7 @@ const mode = useColorMode()
       </NavigationMenuList>
     </NavigationMenu>
 
-    <Drawer>
+    <Drawer v-model:open="isDrawerOpen">
       <DrawerTrigger class="flex md:hidden">
         <Icon icon="tabler:menu" class="size-icon-sm" />
       </DrawerTrigger>
