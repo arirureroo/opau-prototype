@@ -4,6 +4,12 @@ import { interpretSpeed, getSpeedExplanation } from '@/domain/pauli/interpretati
 import { speedThressholdDisplays } from '@/presentation/pauli/thresholds/speedThresholds'
 import { getBadgeVariant } from '@/presentation/shared/badge/badgeVariants'
 import { Badge } from '@/components/ui/badge'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 import MetricCard from '@/components/MetricCard.vue'
 import ThresholdLegend from '@/components/ThresholdLegend.vue'
 import { formatAPM, formatDurationMinutes } from '@/utils/formatters'
@@ -86,7 +92,17 @@ const avgTimePerAnswer = props.results.durationMs && props.results.totalAnswered
             </Badge>
           </div>
           <p class="text-lg font-semibold tabular-nums">
-            {{ formatAPM(grid.apm) }} <span :class="['text-xs font-normal text-muted-foreground']">APM</span>
+            {{ formatAPM(grid.apm) }}
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger as-child>
+                  <span :class="['text-xs font-normal text-muted-foreground cursor-help border-b border-dotted border-muted-foreground/50']">APM</span>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Additions Per Minute</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </p>
         </div>
       </div>

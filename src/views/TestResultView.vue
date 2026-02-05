@@ -3,7 +3,7 @@ import { onBeforeUnmount, onMounted, ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useTestStore } from '@/stores/test'
 import GeneralHeader from '@/components/GeneralHeader.vue'
-import PerformanceDashboard from '@/components/test-result/PerformanceDashboard.vue'
+import TestAnalysisDashboard from '@/components/test-result/TestAnalysisDashboard.vue'
 import GridResult from '@/components/test-result/GridResult.vue'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -98,7 +98,7 @@ const handleGoHome = () => {
         </header>
 
         <!-- Performance Dashboard -->
-        <PerformanceDashboard :results="results" />
+        <TestAnalysisDashboard :results="results" />
 
         <!-- Detailed Grid Results (Collapsible) -->
         <Collapsible v-model:open="showDetailedResults">

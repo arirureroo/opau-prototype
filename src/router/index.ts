@@ -46,6 +46,12 @@ const router = createRouter({
       meta: { title: createTitle('Test Result Details') },
       component: () => import('../views/HistoryDetailView.vue'),
     },
+    {
+      path: '/performance',
+      name: 'performance',
+      meta: { title: createTitle('Performance Statistics') },
+      component: () => import('../views/PerformanceView.vue'),
+    },
   ],
 })
 

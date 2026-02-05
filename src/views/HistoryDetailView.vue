@@ -2,7 +2,7 @@
 import { ref, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import GeneralHeader from '@/components/GeneralHeader.vue'
-import PerformanceDashboard from '@/components/test-result/PerformanceDashboard.vue'
+import TestAnalysisDashboard from '@/components/test-result/TestAnalysisDashboard.vue'
 import GridResult from '@/components/test-result/GridResult.vue'
 import DeleteConfirmationDialog from '@/components/ui/dialog/DeleteConfirmationDialog.vue'
 import { Button } from '@/components/ui/button'
@@ -142,7 +142,7 @@ onMounted(() => {
           </header>
 
           <!-- Performance Dashboard -->
-          <PerformanceDashboard :results="testResult" />
+          <TestAnalysisDashboard :results="testResult" />
 
           <!-- Detailed Grid Results (Collapsible) -->
           <Collapsible v-model:open="showDetailedResults">

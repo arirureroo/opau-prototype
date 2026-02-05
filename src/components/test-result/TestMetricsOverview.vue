@@ -46,7 +46,7 @@ const speedLevel = props.results.apm ? interpretSpeed(props.results.apm) : 'Poor
         <span class="text-xs text-muted-foreground">APM</span>
       </div>
       <p class="text-xs text-muted-foreground mt-1">
-        Addition per Minute
+        Additions Per Minute
       </p>
     </div>
 

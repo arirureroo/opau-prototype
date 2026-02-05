@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import { Hash, Target, Zap, Trophy } from 'lucide-vue-next'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 
 interface Props {
   totalTests: number
@@ -39,17 +45,26 @@ defineProps<Props>()
       </div>
     </div>
 
-    <div class="group p-5 rounded-xl bg-card border border-border/40 hover:border-border hover:shadow-sm transition-all duration-200">
-      <div class="flex items-center gap-2 mb-3">
-        <div class="p-2 rounded-lg bg-muted/50">
-          <Zap :size="18" class="text-muted-foreground" />
+    <TooltipProvider>
+      <div class="group p-5 rounded-xl bg-card border border-border/40 hover:border-border hover:shadow-sm transition-all duration-200">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="p-2 rounded-lg bg-muted/50">
+            <Zap :size="18" class="text-muted-foreground" />
+          </div>
+          <Tooltip>
+            <TooltipTrigger as-child>
+              <span class="text-xs font-medium text-muted-foreground uppercase tracking-wide cursor-help border-b border-dotted border-muted-foreground/50">Avg APM</span>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Additions Per Minute</p>
+            </TooltipContent>
+          </Tooltip>
         </div>
-        <span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Avg APM</span>
+        <p class="text-3xl font-bold tabular-nums tracking-tight">
+          {{ totalTests > 0 ? averageAPM.toFixed(1) : '0' }}
+        </p>
       </div>
-      <p class="text-3xl font-bold tabular-nums tracking-tight">
-        {{ totalTests > 0 ? averageAPM.toFixed(1) : '0' }}
-      </p>
-    </div>
+    </TooltipProvider>
 
     <div class="group p-5 rounded-xl bg-card border border-border/40 hover:border-border hover:shadow-sm transition-all duration-200">
       <div class="flex items-center gap-2 mb-3">

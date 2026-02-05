@@ -20,11 +20,7 @@ defineProps<Props>()
 <template>
   <div v-if="results.timeseries && results.timeseries.length > 0" class="space-y-6">
     <TestMetricsOverview :results="results" />
-
-    <div class="rounded-xl border border-border/40 bg-card p-5">
-      <h3 class="text-sm font-medium text-muted-foreground mb-4">Performance Timeline</h3>
-      <TimeseriesChart :data="results.timeseries" />
-    </div>
+    <TimeseriesChart :data="results.timeseries" />
 
     <Tabs default-value="accuracy" class="w-full">
       <TabsList class="grid w-full grid-cols-2 lg:grid-cols-4 h-auto gap-1 p-1">

@@ -4,7 +4,6 @@ import { useRouter } from 'vue-router'
 import GeneralHeader from '@/components/GeneralHeader.vue'
 import TestHistoryCard from '@/components/history/TestHistoryCard.vue'
 import HistoryFilters from '@/components/history/HistoryFilters.vue'
-import HistoryStats from '@/components/history/HistoryStats.vue'
 import HistoryErrorDisplay from '@/components/history/HistoryErrorDisplay.vue'
 import HistoryEmptyState from '@/components/history/HistoryEmptyState.vue'
 import DeleteConfirmationDialog from '@/components/ui/dialog/DeleteConfirmationDialog.vue'
@@ -19,7 +18,6 @@ const router = useRouter()
 const {
   testResults,
   isLoading,
-  stats,
   loadError,
   deleteError,
   resetError,
@@ -119,9 +117,6 @@ onMounted(() => {
 
         <!-- Loading State -->
         <div v-if="isLoading" class="space-y-6">
-          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <Skeleton v-for="i in 4" :key="i" class="h-24 rounded-xl" />
-          </div>
           <Skeleton class="h-20 rounded-xl" />
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <Skeleton v-for="i in 6" :key="i" class="h-64 rounded-xl" />
@@ -130,16 +125,6 @@ onMounted(() => {
 
         <!-- Content -->
         <template v-else>
-          <!-- Statistics -->
-          <HistoryStats
-            v-if="stats.totalTests > 0"
-            :total-tests="stats.totalTests"
-            :average-accuracy="stats.averageAccuracy"
-            :average-a-p-m="stats.averageAPM"
-            :ranked-count="stats.rankedCount"
-            :practice-count="stats.practiceCount"
-          />
-
           <!-- Filters -->
           <HistoryFilters
             v-if="testResults.length > 0"

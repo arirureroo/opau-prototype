@@ -2,6 +2,12 @@
 import { computed } from 'vue'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 import { formatAPM, formatDurationMinutes } from '@/utils/formatters'
 import { useDateFormat } from '@vueuse/core'
 import { Trash2, Clock, ArrowRight } from 'lucide-vue-next'
@@ -68,9 +74,21 @@ const handleDelete = (e: Event) => {
         </div>
         <div>
           <p class="text-3xs text-muted-foreground mb-1">Speed</p>
-          <p class="text-2xl font-bold tabular-nums">
-            {{ formatAPM(testResult.apm) }}<span class="text-sm font-normal text-muted-foreground ml-1">APM</span>
-          </p>
+          <TooltipProvider>
+            <div class="flex items-baseline">
+              <p class="text-2xl font-bold tabular-nums">
+                {{ formatAPM(testResult.apm) }}
+              </p>
+              <Tooltip>
+                <TooltipTrigger as-child>
+                  <span class="text-sm font-normal text-muted-foreground ml-1 cursor-help border-b border-dotted border-muted-foreground/50">APM</span>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Additions Per Minute</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
+          </TooltipProvider>
         </div>
       </div>
     </div>

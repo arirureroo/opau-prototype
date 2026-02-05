@@ -56,6 +56,9 @@ onUnmounted(() => {
           <RouterLink to="/history" :class="navigationMenuTriggerStyle()">History</RouterLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
+          <RouterLink to="/performance" :class="navigationMenuTriggerStyle()">Performance</RouterLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
           <ColorMode />
         </NavigationMenuItem>
       </NavigationMenuList>
@@ -78,6 +81,9 @@ onUnmounted(() => {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <RouterLink to="/history" :class="navigationMenuTriggerStyle()"> History </RouterLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <RouterLink to="/performance" :class="navigationMenuTriggerStyle()"> Performance </RouterLink>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>

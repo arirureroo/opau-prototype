@@ -3,6 +3,12 @@ import { ref, computed } from 'vue'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 import { SlidersHorizontal, X, ArrowDownAZ, ArrowUpAZ } from 'lucide-vue-next'
 import { Mode } from '@/types/test.types'
 import { SortOrder, FilterType, SortBy } from '@/types/ui.types'
@@ -56,9 +62,9 @@ const modeOptions: Array<{ value: Mode | FilterType.ALL; label: string; color?: 
 ]
 
 const sortOptions = [
-  { value: SortBy.DATE, label: 'Date' },
-  { value: SortBy.ACCURACY, label: 'Accuracy' },
-  { value: SortBy.APM, label: 'APM' },
+  { value: SortBy.DATE, label: 'Date', tooltip: null },
+  { value: SortBy.ACCURACY, label: 'Accuracy', tooltip: null },
+  { value: SortBy.APM, label: 'APM', tooltip: 'Additions Per Minute' },
 ]
 </script>
 
@@ -113,21 +119,28 @@ const sortOptions = [
         <div class="flex items-center gap-2">
           <span class="text-xs text-muted-foreground shrink-0">Sort:</span>
           <div class="flex gap-1">
-            <Button
-              v-for="option in sortOptions"
-              :key="option.value"
-              variant="ghost"
-              size="sm"
-              :class="[
-                'h-7 px-2.5 text-xs',
-                sortBy === option.value
-                  ? 'bg-primary/10 text-primary hover:bg-primary/15'
-                  : 'text-muted-foreground hover:text-foreground'
-              ]"
-              @click="updateSortBy(option.value)"
-            >
-              {{ option.label }}
-            </Button>
+            <TooltipProvider v-for="option in sortOptions" :key="option.value">
+              <Tooltip :disabled="!option.tooltip">
+                <TooltipTrigger as-child>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    :class="[
+                      'h-7 px-2.5 text-xs',
+                      sortBy === option.value
+                        ? 'bg-primary/10 text-primary hover:bg-primary/15'
+                        : 'text-muted-foreground hover:text-foreground'
+                    ]"
+                    @click="updateSortBy(option.value)"
+                  >
+                    {{ option.label }}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent v-if="option.tooltip">
+                  <p>{{ option.tooltip }}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </div>
 

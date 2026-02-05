@@ -65,7 +65,16 @@ const thresholds = [
 
           <div class="p-4 rounded-lg bg-muted/30 border border-border/40 space-y-3">
             <div class="flex justify-between items-baseline">
-              <span class="text-xs text-muted-foreground uppercase tracking-wide">CV</span>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger as-child>
+                    <span class="text-xs text-muted-foreground uppercase tracking-wide cursor-help border-b border-dotted border-muted-foreground/50">CV</span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Coefficient of Variation (lower is better)</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               <span class="text-3xl font-bold tabular-nums">
                 {{ consistency.accuracyCV.toFixed(1) }}<span class="text-lg text-muted-foreground">%</span>
               </span>
@@ -98,13 +107,31 @@ const thresholds = [
 
           <div class="p-4 rounded-lg bg-muted/30 border border-border/40 space-y-3">
             <div class="flex justify-between items-baseline">
-              <span class="text-xs text-muted-foreground uppercase tracking-wide">CV</span>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger as-child>
+                    <span class="text-xs text-muted-foreground uppercase tracking-wide cursor-help border-b border-dotted border-muted-foreground/50">CV</span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Coefficient of Variation (lower is better)</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               <span class="text-3xl font-bold tabular-nums">
                 {{ consistency.apmCV.toFixed(1) }}<span class="text-lg text-muted-foreground">%</span>
               </span>
             </div>
             <div class="flex justify-between text-sm">
-              <span class="text-muted-foreground">Mean APM</span>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger as-child>
+                    <span class="text-muted-foreground cursor-help border-b border-dotted border-muted-foreground/50">Mean APM</span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Additions Per Minute</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               <span class="font-medium">{{ formatAPM(consistency.meanAPM) }}</span>
             </div>
             <div class="flex justify-between text-sm">
